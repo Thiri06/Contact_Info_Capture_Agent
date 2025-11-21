@@ -1,0 +1,7 @@
+{
+  "name": "EduCLaaS Contact Manager",
+  "description": "Contact management application with manual entry validation and AI-powered image editing.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
