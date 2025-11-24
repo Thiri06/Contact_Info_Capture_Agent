@@ -1,6 +1,11 @@
+
 import React, { useState } from 'react';
 import { Sidebar } from './Sidebar';
 import { SidebarItem, UserRole } from '../types';
+import { ManageEvents } from './ManageEvents';
+import { FormBuilder } from './FormBuilder';
+import { ImportPreRegistration } from './ImportPreRegistration';
+import { ReviewQueue } from './ReviewQueue';
 import { 
   LayoutDashboard, 
   Calendar, 
@@ -56,23 +61,23 @@ export const ManagerDashboard: React.FC = () => {
       />
       
       <main className="flex-1 md:ml-64 p-6 md:p-10 overflow-y-auto h-full bg-brand-light">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto h-full flex flex-col">
             
-            <div className="flex justify-between items-end mb-8">
+            {activeSidebarItem === SidebarItem.DASHBOARD && (
+               <div className="flex justify-between items-end mb-8 shrink-0">
                 <div>
                     <h1 className="text-3xl font-bold text-gray-800">
-                        {activeSidebarItem === SidebarItem.DASHBOARD ? "Dashboard Overview" : "Manager Portal"}
+                        Dashboard Overview
                     </h1>
-                    {activeSidebarItem === SidebarItem.DASHBOARD && (
-                        <p className="text-gray-500 mt-1">Global overview of all ongoing events and data health.</p>
-                    )}
+                    <p className="text-gray-500 mt-1">Global overview of all ongoing events and data health.</p>
                 </div>
                 <div className="text-sm text-gray-500 font-medium">
                     Last updated: Just now
                 </div>
             </div>
+            )}
 
-            {activeSidebarItem === SidebarItem.DASHBOARD ? (
+            {activeSidebarItem === SidebarItem.DASHBOARD && (
                 <div className="space-y-6">
                     {/* A. Metrics Cards */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
@@ -253,7 +258,29 @@ export const ManagerDashboard: React.FC = () => {
 
                     </div>
                 </div>
-            ) : (
+            )}
+
+            {activeSidebarItem === SidebarItem.MANAGE_EVENTS && (
+                <ManageEvents />
+            )}
+
+            {activeSidebarItem === SidebarItem.FORM_BUILDER && (
+                <FormBuilder />
+            )}
+
+            {activeSidebarItem === SidebarItem.IMPORT_PRE_REGISTRATION && (
+                <ImportPreRegistration />
+            )}
+
+            {activeSidebarItem === SidebarItem.REVIEW_QUEUE && (
+                <ReviewQueue />
+            )}
+
+            {activeSidebarItem !== SidebarItem.DASHBOARD && 
+             activeSidebarItem !== SidebarItem.MANAGE_EVENTS && 
+             activeSidebarItem !== SidebarItem.FORM_BUILDER && 
+             activeSidebarItem !== SidebarItem.IMPORT_PRE_REGISTRATION &&
+             activeSidebarItem !== SidebarItem.REVIEW_QUEUE && (
                 <div className="bg-white p-12 rounded-3xl shadow-sm border border-gray-100 flex flex-col items-center justify-center min-h-[400px]">
                      <div className="p-4 bg-gray-50 rounded-full mb-4">
                         <LayoutDashboard className="text-gray-400" size={32} />
