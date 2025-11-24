@@ -6,6 +6,9 @@ import { ManageEvents } from './ManageEvents';
 import { FormBuilder } from './FormBuilder';
 import { ImportPreRegistration } from './ImportPreRegistration';
 import { ReviewQueue } from './ReviewQueue';
+import { SubmissionsMonitor } from './SubmissionsMonitor';
+import { ExportData } from './ExportData';
+import { PostEventSummary } from './PostEventSummary';
 import { 
   LayoutDashboard, 
   Calendar, 
@@ -276,11 +279,26 @@ export const ManagerDashboard: React.FC = () => {
                 <ReviewQueue />
             )}
 
+            {activeSidebarItem === SidebarItem.SUBMISSIONS_MONITOR && (
+                <SubmissionsMonitor />
+            )}
+
+            {activeSidebarItem === SidebarItem.EXPORT_DATA && (
+                <ExportData />
+            )}
+
+            {activeSidebarItem === SidebarItem.POST_EVENT_SUMMARY && (
+                <PostEventSummary />
+            )}
+
             {activeSidebarItem !== SidebarItem.DASHBOARD && 
              activeSidebarItem !== SidebarItem.MANAGE_EVENTS && 
              activeSidebarItem !== SidebarItem.FORM_BUILDER && 
              activeSidebarItem !== SidebarItem.IMPORT_PRE_REGISTRATION &&
-             activeSidebarItem !== SidebarItem.REVIEW_QUEUE && (
+             activeSidebarItem !== SidebarItem.REVIEW_QUEUE &&
+             activeSidebarItem !== SidebarItem.SUBMISSIONS_MONITOR &&
+             activeSidebarItem !== SidebarItem.EXPORT_DATA && 
+             activeSidebarItem !== SidebarItem.POST_EVENT_SUMMARY && (
                 <div className="bg-white p-12 rounded-3xl shadow-sm border border-gray-100 flex flex-col items-center justify-center min-h-[400px]">
                      <div className="p-4 bg-gray-50 rounded-full mb-4">
                         <LayoutDashboard className="text-gray-400" size={32} />
