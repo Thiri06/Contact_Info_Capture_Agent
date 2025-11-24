@@ -281,7 +281,12 @@ export const FormBuilder: React.FC = () => {
           </div>
         </div>
 
-        {/* RIGHT PANEL: Live Preview */}
+        {/* RIGHT PANEL: Live Preview - COMMENTED OUT */}
+        {/* 
+            The following block is commented out using a conditional check.
+            To enable the live preview, remove the {false && (...)} wrapper.
+        */}
+        {false && (
         <div className="w-[340px] shrink-0 flex flex-col items-center justify-center bg-gray-100 rounded-3xl p-4 border border-gray-200 shadow-inner">
           <div className="flex items-center gap-2 mb-4 text-gray-500 font-medium">
              <Smartphone size={18} />
@@ -349,6 +354,7 @@ export const FormBuilder: React.FC = () => {
             <div className="h-1 bg-gray-300 w-1/3 mx-auto my-2 rounded-full shrink-0"></div>
           </div>
         </div>
+        )}
 
       </div>
     </div>
